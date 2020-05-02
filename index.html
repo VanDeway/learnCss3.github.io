@@ -1,11 +1,80 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="utf-8"> 
-    <title>learnCss3</title> 
-  </head>
-  <body>
-    Hi Css3!
-    GitHub Desktop 经常提交失败，不知道为什么。
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    header{
+      color: grey;
+      text-align: center;
+    }
+    main{
+      color: grey;
+      width: 30%;
+      margin: auto;
+    } 
+    li input{
+      display: none;
+    }
+    /* li{
+      display: none;
+    } */
+    li.edit span{
+      display: none;
+    }
+    li.edit input{
+      display: initial;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Javascript Events</h1>
+  </header>
+  <main>
+    <ul id="checkList">
+      <li>
+        <span>Apples</span>
+        <input value="Apples">
+      </li>
+      <li>
+        <span>Oranges</span>
+        <input value="Oranges">
+      </li>
+      <li>
+        <span>Bananas</span>
+        <input value="Bananas">
+      </li>
+    </ul>
+  </main>
+  <script>
+    var items = Array.from(checkList.children);
+    items.forEach(item=>
+    {
+      item.onclick = editItem;
+      item.children[1].onblur = updateItem;
+      item.children[1].onkeypress = keyPress;
+    });
+    function editItem()
+    {
+      this.className = "edit";
+      let input = this.children[1];
+      input.focus();
+      input.setSelectionRange(0, input.value.length);
+    }
+    function updateItem()
+    {
+      let father = this.parentNode;
+      father.className = "";
+      let span = father.children[0]; 
+      span.innerHTML = this.value;  
+    }
+    function keyPress(event)
+    {
+      if(event.which === 13)
+        updateItem.call(this);
+    }
+  </script>
+</body>
 </html>
