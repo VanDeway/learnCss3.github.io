@@ -1,80 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
     header{
-      color: grey;
-      text-align: center;
+      color:white;
+      background-color: #388E3C;
+      padding: 20px 0;
+      padding-left: 40px;
+    }
+    header div{
+      width: 76%;
+      margin: auto;
+      padding: 0;
     }
     main{
-      color: grey;
-      width: 30%;
+      border: solid;
+      border-radius: 4px;
+      border-color: #e0e0e0;
+      border-width: 0.5px;
+      color: gray;
+      width: 70%;
       margin: auto;
+      margin-top: 40px;
     } 
-    li input{
-      display: none;
+    main section{
+      width: 90%;
+      margin: auto;
+      margin-bottom: 16px;
     }
-    /* li{
-      display: none;
-    } */
-    li.edit span{
-      display: none;
+    main section h2{
+      color: black;
     }
-    li.edit input{
-      display: initial;
+    #txt输入{
+      width: 240px;
+      height: 25px;
+      border-radius: 4px;
+      border: solid;
+      border-color: #e0e0e0;
+      border-width: 0.5px;
+    }
+    #btn提交{
+      padding: 7px 24px;
+      background-color: #505050;
+      color: white;
+      border-radius: 4px;
+      border-width: 0;
+    }
+    main section ul{
+      border: solid;
+      border-radius: 4px;
+      border-color: #e0e0e0;
+      border-width: 0.5px;
+      list-style: none;
+      padding: 0;
+    }
+    main section ul li{
+      border: solid;
+      border-color: #e0e0e0;
+      border-width: 0.5px;
+      height: 24px;
+      padding: 10px 10px;
+      color: #505050;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Javascript Events</h1>
+    <div>
+      <h1>Item Lister</h1>
+    </div>
   </header>
   <main>
-    <ul id="checkList">
-      <li>
-        <span>Apples</span>
-        <input value="Apples">
-      </li>
-      <li>
-        <span>Oranges</span>
-        <input value="Oranges">
-      </li>
-      <li>
-        <span>Bananas</span>
-        <input value="Bananas">
-      </li>
-    </ul>
+    <section>
+      <h2>Add Items</h2>
+      <form>
+        <input id="txt输入">
+        <input id="btn提交" type="submit"></button>
+      </form>
+    </section>
+    <section>
+      <h2>Items</h2>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+      </ul>
+    </section>
   </main>
   <script>
-    var items = Array.from(checkList.children);
-    items.forEach(item=>
-    {
-      item.onclick = editItem;
-      item.children[1].onblur = updateItem;
-      item.children[1].onkeypress = keyPress;
-    });
-    function editItem()
-    {
-      this.className = "edit";
-      let input = this.children[1];
-      input.focus();
-      input.setSelectionRange(0, input.value.length);
-    }
-    function updateItem()
-    {
-      let father = this.parentNode;
-      father.className = "";
-      let span = father.children[0]; 
-      span.innerHTML = this.value;  
-    }
-    function keyPress(event)
-    {
-      if(event.which === 13)
-        updateItem.call(this);
-    }
+    
   </script>
 </body>
 </html>
